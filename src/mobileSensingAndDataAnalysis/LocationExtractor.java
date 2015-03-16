@@ -3,11 +3,14 @@ package mobileSensingAndDataAnalysis;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.tools.JavaFileManager.Location;
 
+import org.apache.commons.math3.ml.clustering.CentroidCluster;
+import org.apache.commons.math3.ml.clustering.Cluster;
 import org.apache.commons.math3.ml.clustering.DBSCANClusterer;
 import org.apache.commons.math3.ml.clustering.KMeansPlusPlusClusterer;
 
@@ -15,6 +18,7 @@ import com.opencsv.CSVReader;
 
 public class LocationExtractor {
 	
+	//Indexes for easy access to the attributes
 	final static int PRIORITY = 0;
 	final static int ARRIVAL_TIME = 1;
 	final static int REMOVAL_TIME = 2;
@@ -41,25 +45,31 @@ public class LocationExtractor {
 		ArrayList<String[]> noti = new ArrayList<String[]>();
 		String[] notification = null;
 		
+		notification = csvReader.readNext();
 		while((notification = csvReader.readNext()) != null) {
 			noti.add(notification);
 		}
 		csvReader.close();
 		
-		for(String n : noti.get(0)) {
-			System.out.println(n);
+		//Adapted from http://commons.apache.org/proper/commons-math/userguide/ml.html
+		List<LocationWrapper> clusterInput = new ArrayList<LocationWrapper>(noti.size());
+		for (String[] location : noti) {
+		    clusterInput.add(new LocationWrapper(location[LATITUDE], location[LONGITUDE]));
 		}
 		
-		System.out.println(noti.get(0)[VIBRATE]);
-		
-		List<LocationWrapper> clusterInput = new ArrayList<LocationWrapper>(locations.size());
-		for (Location location : locations)
-		    clusterInput.add(new LocationWrapper(location));
-		
-		KMeansPlusPlusClusterer<double[]> clusterer = new KMeansPlusPlusClusterer<double[]>(10, 10000);
-		
+		DBSCANClusterer<LocationWrapper> clusterer = new DBSCANClusterer<LocationWrapper>(1.0, 100);
+		List<Cluster<LocationWrapper>> clusterResults = clusterer.cluster(clusterInput);
+
+		// output the clusters
+		PrintWriter writer = new PrintWriter("clusters.txt", "UTF-8");
+		for (int i = 0; i < clusterResults.size(); i++) {
+		    System.out.println("CLUSTER " + i);
+		    writer.println("CLUSTER " + i);
+		    writer.println();
+		    for (LocationWrapper locationWrapper : clusterResults.get(i).getPoints()) {
+		        writer.println(locationWrapper.printPoint());
+		    }
+		}
+		writer.close();
 	}
-	
 }
-
-
