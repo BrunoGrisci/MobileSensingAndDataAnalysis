@@ -1,4 +1,4 @@
-priority,arrival_time,removal_time,clicked,sender_package,sender_app_name,phone_status,ringer_mode,interruption_filter,filter_cleared,led,vibrate,sound,latitude,longitude,activity,surrounding_sound,wifi,proximity,something
+priority,arrival_time,removal_time,clicked,sender_package,sender_app_name,phone_status,ringer_mode,interruption_filter,filter_cleared,led,vibrate,sound,latitude,longitude,location_accuracy,activity,surrounding_sound,wifi,proximity
 -1,1423261387703,1423261399122,true,com.android.vending,Google Play Store,UNLOCKED,SOUND,INTERRUPTION_FILTER_ALL,true,false,false,false,0,0,0,still,SILENT,true,false
 -1,1423261454146,1423261466351,false,com.android.vending,Google Play Store,UNLOCKED,SOUND,INTERRUPTION_FILTER_ALL,true,false,false,false,0,0,0,still,SILENT,true,false
 -1,1423261568140,1423261581936,false,com.android.vending,Google Play Store,UNLOCKED,SOUND,INTERRUPTION_FILTER_ALL,true,false,false,false,0,0,0,still,SILENT,true,false

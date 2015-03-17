@@ -15,11 +15,11 @@
 @attribute sound {false,true}
 @attribute latitude numeric
 @attribute longitude numeric
-@attribute activity numeric
-@attribute surrounding_sound {still,unknown,tilting,in_vehicle,on_bicycle,on_foot}
-@attribute wifi {SILENT,unknow,SPEAKING}
-@attribute proximity {true,false}
-@attribute something {false}
+@attribute location_accuracy numeric
+@attribute activity {still,unknown,tilting,in_vehicle,on_bicycle,on_foot}
+@attribute surrounding_sound {SILENT,unknow,SPEAKING}
+@attribute wifi {true,false}
+@attribute proximity {false}
 
 @data
 -1,1423261387703.000064,1423261399121.999872,true,com.android.vending,'Google Play Store',UNLOCKED,SOUND,INTERRUPTION_FILTER_ALL,true,false,false,false,0,0,0,still,SILENT,true,false

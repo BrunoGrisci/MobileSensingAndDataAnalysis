@@ -34,10 +34,11 @@ public class LocationExtractor {
 	final static int SOUND = 12;
 	final static int LATITUDE = 13;
 	final static int LONGITUDE = 14;
-	final static int ACTIVITY = 15;
-	final static int SURROUNDING_SOUND = 16;
-	final static int WIFI = 17;
-	final static int PROXIMITY = 18;
+	final static int LOCATION_ACCURACY = 15;
+	final static int ACTIVITY = 16;
+	final static int SURROUNDING_SOUND = 17;
+	final static int WIFI = 18;
+	final static int PROXIMITY = 19;
 	
 	public static void main(String[] args) throws IOException {
 		String csvFilename = "Bruno_Grisci_notifications.csv";
@@ -71,5 +72,7 @@ public class LocationExtractor {
 		    }
 		}
 		writer.close();
+		
+		//java -cp /home/bruno/weka-3-6-12/weka.jar weka.core.converters.CSVLoader Bruno_Grisci_notifications.csv > interruptibility.arff
 	}
 }
